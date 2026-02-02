@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.linear-sync-config.json
+*.js.map
+*.d.ts
+!jest.config.js
+coverage/
+.DS_Store

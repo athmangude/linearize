@@ -1,0 +1,79 @@
+{
+  "scenarios": [
+    {
+      "name": "7.1 Credit Limit Increase in < 2s",
+      "userStories": [
+        {
+          "title": "US-7.1.1 Real-time Sync",
+          "description": "As a banking customer, I want my credit limit increase to reflect in real-time so that I can immediately use my new limit.",
+          "acceptanceCriteria": "- Limit update propagates within 2 seconds\n- All connected services receive the update\n- Customer notification is sent upon completion"
+        },
+        {
+          "title": "US-7.1.2 Cache Invalidation",
+          "description": "As a system, I want to invalidate cached credit limits when an update occurs so that stale data is never served.",
+          "acceptanceCriteria": "- All cache layers are invalidated on update\n- Cache TTL is set to 0 during propagation\n- Fallback to source of truth on cache miss"
+        },
+        {
+          "title": "US-7.1.3 Rollback on Failure",
+          "description": "As a system, I want to rollback a credit limit change if downstream propagation fails so that data consistency is maintained.",
+          "acceptanceCriteria": "- Automatic rollback within 5 seconds of failure\n- Alert sent to operations team\n- Customer is notified of the delay"
+        }
+      ]
+    },
+    {
+      "name": "7.2 Audit Trail",
+      "userStories": [
+        {
+          "title": "US-7.2.1 Change Logging",
+          "description": "As a compliance officer, I want every credit limit change to be logged so that I can produce audit reports.",
+          "acceptanceCriteria": "- All changes logged with timestamp, actor, old value, new value\n- Logs are immutable\n- Logs are retained for 7 years"
+        },
+        {
+          "title": "US-7.2.2 Audit Report Generation",
+          "description": "As a compliance officer, I want to generate audit reports for a given date range so that I can fulfill regulatory requirements.",
+          "acceptanceCriteria": "- Reports can be filtered by date range and customer\n- Export to CSV and PDF\n- Generated within 30 seconds for up to 1M records"
+        }
+      ]
+    },
+    {
+      "name": "7.3 Customer Notifications",
+      "userStories": [
+        {
+          "title": "US-7.3.1 Email Notification",
+          "description": "As a customer, I want to receive an email notification when my credit limit changes so that I am informed of updates.",
+          "acceptanceCriteria": "- Email sent within 1 minute of change\n- Email includes old and new limit\n- Unsubscribe option available"
+        },
+        {
+          "title": "US-7.3.2 Push Notification",
+          "description": "As a customer, I want to receive a push notification on my mobile app when my credit limit changes.",
+          "acceptanceCriteria": "- Push sent within 30 seconds of change\n- Deep link to credit limit detail screen\n- Notification respects user's quiet hours"
+        },
+        {
+          "title": "US-7.3.3 SMS Notification",
+          "description": "As a customer, I want to receive an SMS if I have opted in so that I am notified even without the app.",
+          "acceptanceCriteria": "- SMS sent only if customer has opted in\n- SMS includes new limit amount\n- Rate limited to 1 SMS per change event"
+        },
+        {
+          "title": "US-7.3.4 In-App Banner",
+          "description": "As a customer, I want to see an in-app banner highlighting my new credit limit when I open the app.",
+          "acceptanceCriteria": "- Banner appears on next app open after change\n- Banner is dismissible\n- Banner links to limit details page"
+        }
+      ]
+    },
+    {
+      "name": "7.4 Fraud Detection Integration",
+      "userStories": [
+        {
+          "title": "US-7.4.1 Fraud Score Check",
+          "description": "As the system, I want to check the customer's fraud score before approving a limit increase so that risk is mitigated.",
+          "acceptanceCriteria": "- Fraud API called before approval\n- Requests with score > 0.8 are automatically declined\n- Timeout after 3 seconds falls back to manual review"
+        },
+        {
+          "title": "US-7.4.2 Suspicious Activity Alert",
+          "description": "As a fraud analyst, I want to be alerted when a limit increase request is flagged so that I can investigate.",
+          "acceptanceCriteria": "- Alert sent to fraud team queue\n- Alert includes customer profile and request details\n- SLA: review within 4 hours"
+        }
+      ]
+    }
+  ]
+}

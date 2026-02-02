@@ -1,0 +1,19 @@
+{
+  "scenarios": [
+    {
+      "name": "7.1 User Login",
+      "userStories": [
+        {
+          "title": "US-7.1.1 Email Login",
+          "description": "As a user, I want to log in with my email and password so that I can access my account.",
+          "acceptanceCriteria": "- User can enter email and password\n- System validates credentials\n- User is redirected to dashboard on success\n- Error message shown on invalid credentials"
+        },
+        {
+          "title": "US-7.1.2 Password Reset",
+          "description": "As a user, I want to reset my password so that I can regain access if I forget it.",
+          "acceptanceCriteria": "- User can request a password reset via email\n- Reset link expires after 24 hours\n- New password must meet complexity requirements"
+        }
+      ]
+    }
+  ]
+}

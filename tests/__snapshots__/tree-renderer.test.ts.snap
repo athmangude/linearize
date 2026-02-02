@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree Renderer snapshot test 1`] = `
+"├── Parent: Credit Limit Management
+│   ├── Scenario: 7.1 Limit Increase in < 2s
+│   │   ├── US-7.1.1 Real-time Sync
+│   │   └── US-7.1.2 Cache Invalidation
+│   └── Scenario: 7.2 Audit Trail
+│       └── US-7.2.1 Logging"
+`;

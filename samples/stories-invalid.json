@@ -1,0 +1,15 @@
+{
+  "scenarios": [
+    {
+      "name": "Missing Stories Scenario"
+    },
+    {
+      "userStories": [
+        {
+          "title": "Story without a scenario name",
+          "description": "Some description"
+        }
+      ]
+    }
+  ]
+}
