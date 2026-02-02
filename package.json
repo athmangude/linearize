@@ -4,7 +4,7 @@
   "description": "CLI tool to create Linear ticket hierarchies from structured JSON files",
   "main": "dist/index.js",
   "bin": {
-    "linearize": "./dist/index.js"
+    "linearize": "dist/index.js"
   },
   "files": [
     "dist",
