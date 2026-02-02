@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name('linearize')
   .description('CLI tool to create Linear ticket hierarchies from structured JSON files')
-  .version('1.0.0');
+  .version('0.1.0');
 
 program
   .command('init')
