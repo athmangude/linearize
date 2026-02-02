@@ -4,8 +4,8 @@ import { ValidationError } from '../utils/errors';
 
 const inputSchema = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'LinearSyncData',
-  description: 'Schema for the Linear Sync CLI tool input data.',
+  title: 'LinearizeData',
+  description: 'Schema for the Linearize CLI tool input data.',
   type: 'object',
   properties: {
     scenarios: {

@@ -8,7 +8,7 @@ import { runCommand } from './commands/run';
 const program = new Command();
 
 program
-  .name('linear-sync')
+  .name('linearize')
   .description('CLI tool to create Linear ticket hierarchies from structured JSON files')
   .version('1.0.0');
 

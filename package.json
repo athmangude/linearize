@@ -1,10 +1,10 @@
 {
-  "name": "linear-sync",
+  "name": "linearize",
   "version": "1.0.0",
   "description": "CLI tool to create Linear ticket hierarchies from structured JSON files",
   "main": "dist/index.js",
   "bin": {
-    "linear-sync": "./dist/index.js"
+    "linearize": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

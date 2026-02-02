@@ -1,4 +1,4 @@
-# Linear Sync CLI
+# Linearize
 
 A command-line tool that reads a structured JSON file of scenarios and user stories and creates a complete ticket hierarchy in [Linear](https://linear.app) — automatically.
 
@@ -11,9 +11,9 @@ Product Managers spend significant time manually translating structured requirem
 - **Lost hierarchy** — the parent-child relationships from the PRD don't always survive manual entry
 - **Human error** — missed stories, duplicated entries, or incorrect nesting
 
-## What Linear Sync Does
+## What Linearize Does
 
-Linear Sync takes a single JSON file containing your scenarios and user stories and creates a **3-level ticket hierarchy** in Linear:
+Linearize takes a single JSON file containing your scenarios and user stories and creates a **3-level ticket hierarchy** in Linear:
 
 ```
 Parent Ticket (you name it)
@@ -37,7 +37,7 @@ The tool handles:
 
 ## Impact
 
-| Without Linear Sync | With Linear Sync |
+| Without Linearize | With Linearize |
 |---|---|
 | ~2 minutes per ticket, manually | ~2 seconds per ticket, automated |
 | Formatting varies across tickets | Every story has consistent formatting |
@@ -51,7 +51,7 @@ A PRD with 6 scenarios and 24 user stories that would take 30+ minutes of manual
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd user-stories-to-linear-tickets
+cd linearize
 
 # Install dependencies
 npm install
@@ -59,7 +59,7 @@ npm install
 # Build
 npm run build
 
-# Link globally (optional, for using `linear-sync` anywhere)
+# Link globally (optional, for using `linearize` anywhere)
 npm link
 ```
 
@@ -76,7 +76,7 @@ You need two things from Linear:
 ### 1. Configure credentials
 
 ```bash
-linear-sync init
+linearize init
 ```
 
 The tool will prompt you for:
@@ -92,12 +92,12 @@ Verifying credentials...
 ✔ Configuration saved.
 ```
 
-Your credentials are stored in `~/.linear-sync-config.json`. They persist across sessions.
+Your credentials are stored in `~/.linearize-config.json`. They persist across sessions.
 
 ### 2. Create tickets from a JSON file
 
 ```bash
-linear-sync run --file ./stories.json
+linearize run --file ./stories.json
 ```
 
 The tool walks you through the process:
@@ -141,11 +141,11 @@ Summary:
 ### 3. Reset credentials
 
 ```bash
-linear-sync reset
+linearize reset
 ```
 
 ```
-? Are you sure you want to delete your Linear Sync configuration? Yes
+? Are you sure you want to delete your Linearize configuration? Yes
 ✔ Configuration removed successfully.
 ```
 
@@ -154,14 +154,14 @@ linear-sync reset
 If you need to switch teams or API keys, reset first, then init again:
 
 ```bash
-linear-sync reset
-linear-sync init
+linearize reset
+linearize init
 ```
 
 Or simply run `init` again and choose to overwrite:
 
 ```bash
-linear-sync init
+linearize init
 ```
 
 ```
@@ -173,7 +173,7 @@ linear-sync init
 If you try to run before configuring:
 
 ```bash
-linear-sync run --file ./stories.json
+linearize run --file ./stories.json
 ```
 
 ```
@@ -181,15 +181,15 @@ linear-sync run --file ./stories.json
 
 Error Type:  ConfigError
 Description: Configuration is missing or invalid.
-Details:     No configuration found. Please run 'linear-sync init' first.
+Details:     No configuration found. Please run 'linearize init' first.
 
-Troubleshooting: Run 'linear-sync init' to set up your configuration.
+Troubleshooting: Run 'linearize init' to set up your configuration.
 ```
 
 ### 6. Running with an invalid JSON file
 
 ```bash
-linear-sync run --file ./bad-data.json
+linearize run --file ./bad-data.json
 ```
 
 ```
@@ -205,7 +205,7 @@ Troubleshooting: Check that your JSON file matches the required schema. See the 
 ### 7. Missing the `--file` flag
 
 ```bash
-linear-sync run
+linearize run
 ```
 
 ```
@@ -238,7 +238,7 @@ The tool expects a JSON file with the following structure:
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "LinearSyncData",
+  "title": "LinearizeData",
   "type": "object",
   "properties": {
     "scenarios": {
@@ -359,10 +359,10 @@ Troubleshooting: [Suggested next step]
 
 | Error Type | Cause | Suggested Fix |
 |---|---|---|
-| `AuthenticationError` | Invalid or expired API key | Run `linear-sync reset` then `linear-sync init` |
+| `AuthenticationError` | Invalid or expired API key | Run `linearize reset` then `linearize init` |
 | `ValidationError` | JSON file doesn't match the schema | Check file against the schema above |
 | `NetworkError` | Connection failure or API issue | Check internet connection, try again |
-| `ConfigError` | No config file found | Run `linear-sync init` |
+| `ConfigError` | No config file found | Run `linearize init` |
 
 Rate limiting (HTTP 429) is handled automatically with exponential backoff and up to 3 retries.
 
