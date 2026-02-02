@@ -6,7 +6,7 @@ import { validateInput } from '../services/schema-validator';
 import { renderTree } from '../services/tree-renderer';
 import { LinearApiClient } from '../services/linear-client';
 import { createProgressTracker } from '../utils/progress';
-import { ConfigError, formatError } from '../utils/errors';
+import { ConfigError, ValidationError, formatError } from '../utils/errors';
 
 export async function runCommand(filePath: string): Promise<void> {
   try {
@@ -22,7 +22,7 @@ export async function runCommand(filePath: string): Promise<void> {
       rawData = JSON.parse(fileContent);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      throw new ConfigError(`Failed to read or parse file: ${message}`);
+      throw new ValidationError(`Failed to read or parse file: ${message}`);
     }
 
     const data = validateInput(rawData);
