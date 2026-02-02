@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export class LinearizeError extends Error {
+export class LinearizerError extends Error {
   constructor(
     message: string,
     public errorType: string,
@@ -8,23 +8,23 @@ export class LinearizeError extends Error {
     public troubleshooting: string
   ) {
     super(message);
-    this.name = 'LinearizeError';
+    this.name = 'LinearizerError';
   }
 }
 
-export class AuthenticationError extends LinearizeError {
+export class AuthenticationError extends LinearizerError {
   constructor(details: string) {
     super(
       'The stored API key is invalid or has expired.',
       'AuthenticationError',
       details,
-      "Run 'linearize reset' and then 'linearize init' to re-enter your credentials."
+      "Run 'linearizer reset' and then 'linearizer init' to re-enter your credentials."
     );
     this.name = 'AuthenticationError';
   }
 }
 
-export class ValidationError extends LinearizeError {
+export class ValidationError extends LinearizerError {
   constructor(details: string) {
     super(
       'The provided JSON file does not match the expected schema.',
@@ -36,7 +36,7 @@ export class ValidationError extends LinearizeError {
   }
 }
 
-export class NetworkError extends LinearizeError {
+export class NetworkError extends LinearizerError {
   constructor(details: string) {
     super(
       'A network error occurred while communicating with the Linear API.',
@@ -48,20 +48,20 @@ export class NetworkError extends LinearizeError {
   }
 }
 
-export class ConfigError extends LinearizeError {
+export class ConfigError extends LinearizerError {
   constructor(details: string) {
     super(
       'Configuration is missing or invalid.',
       'ConfigError',
       details,
-      "Run 'linearize init' to set up your configuration."
+      "Run 'linearizer init' to set up your configuration."
     );
     this.name = 'ConfigError';
   }
 }
 
 export function formatError(error: unknown): string {
-  if (error instanceof LinearizeError) {
+  if (error instanceof LinearizerError) {
     const lines = [
       '',
       chalk.bold.red('✖ Error! The synchronization process was interrupted.'),

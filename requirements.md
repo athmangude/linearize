@@ -6,7 +6,7 @@ Product Managers often face significant overhead when transitioning from structu
 
 ## 2. The Solution
 
-**Linearize** is a terminal-based utility designed to automate the ingestion of structured requirement data. It allows PMs to map a single JSON file to a sophisticated multi-level hierarchy in Linear. The tool handles authentication, persistent configuration, visual confirmation of the hierarchy, and real-time progress tracking, ensuring that every user story is uploaded with its full context, including scenario descriptions and specific acceptance criteria.
+**Linearizer** is a terminal-based utility designed to automate the ingestion of structured requirement data. It allows PMs to map a single JSON file to a sophisticated multi-level hierarchy in Linear. The tool handles authentication, persistent configuration, visual confirmation of the hierarchy, and real-time progress tracking, ensuring that every user story is uploaded with its full context, including scenario descriptions and specific acceptance criteria.
 
 ## 3. Technical Requirements & Configuration
 
@@ -22,15 +22,15 @@ To interface with the Linear API, the tool requires the following credentials (r
 
 ### 3.2 Persistent Storage
 
-Config data is stored locally (e.g., in `~/.linearize-config.json`).
+Config data is stored locally (e.g., in `~/.linearizer-config.json`).
 
-* **`linearize init`**: Prompt for API key and Team ID.
+* **`linearizer init`**: Prompt for API key and Team ID.
 
-* **`linearize reset`**: Wipe local configuration to allow re-entry of credentials.
+* **`linearizer reset`**: Wipe local configuration to allow re-entry of credentials.
 
 ## 4. User Workflow
 
-1. **Ingestion**: User runs `linearize run --file ./stories.json`.
+1. **Ingestion**: User runs `linearizer run --file ./stories.json`.
 
 2. **Naming**: CLI asks: *"What is the title of the main parent ticket?"*
 
@@ -84,8 +84,8 @@ The tool expects a JSON file following this structure:
 ```json
 {
   "$schema": "[http://json-schema.org/draft-07/schema#](http://json-schema.org/draft-07/schema#)",
-  "title": "LinearizeData",
-  "description": "Schema for the Linearize CLI tool input data.",
+  "title": "LinearizerData",
+  "description": "Schema for the Linearizer CLI tool input data.",
   "type": "object",
   "properties": {
     "scenarios": {
@@ -144,7 +144,7 @@ Error Type:  [e.g., ValidationError, AuthenticationError, NetworkError]
 Description: [A human-readable explanation of what went wrong]
 Details:     [The raw error message or status code thrown by the system]
 
-Troubleshooting: [Suggested action, e.g., "Check your internet connection" or "Run 'linearize reset'"]
+Troubleshooting: [Suggested action, e.g., "Check your internet connection" or "Run 'linearizer reset'"]
 
 ```
 

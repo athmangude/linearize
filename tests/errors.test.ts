@@ -1,12 +1,12 @@
-import { AuthenticationError, ValidationError, NetworkError, ConfigError, formatError, LinearizeError } from '../src/utils/errors';
+import { AuthenticationError, ValidationError, NetworkError, ConfigError, formatError, LinearizerError } from '../src/utils/errors';
 
 describe('Error Classes', () => {
   test('AuthenticationError has correct properties', () => {
     const err = new AuthenticationError('Invalid token');
     expect(err.errorType).toBe('AuthenticationError');
     expect(err.details).toBe('Invalid token');
-    expect(err.troubleshooting).toContain('linearize reset');
-    expect(err).toBeInstanceOf(LinearizeError);
+    expect(err.troubleshooting).toContain('linearizer reset');
+    expect(err).toBeInstanceOf(LinearizerError);
     expect(err).toBeInstanceOf(Error);
   });
 
@@ -28,12 +28,12 @@ describe('Error Classes', () => {
     const err = new ConfigError('File not found');
     expect(err.errorType).toBe('ConfigError');
     expect(err.details).toBe('File not found');
-    expect(err.troubleshooting).toContain('linearize init');
+    expect(err.troubleshooting).toContain('linearizer init');
   });
 });
 
 describe('formatError', () => {
-  test('formats LinearizeError with structured output', () => {
+  test('formats LinearizerError with structured output', () => {
     const err = new AuthenticationError('401 Unauthorized');
     const output = formatError(err);
     expect(output).toContain('Error!');

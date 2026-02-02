@@ -3,8 +3,8 @@ import path from 'path';
 import os from 'os';
 import { Config } from '../src/types';
 
-const tmpDir = path.join(os.tmpdir(), 'linearize-test-' + Date.now());
-const configPath = path.join(tmpDir, '.linearize-config.json');
+const tmpDir = path.join(os.tmpdir(), 'linearizer-test-' + Date.now());
+const configPath = path.join(tmpDir, '.linearizer-config.json');
 
 // Helper functions that mirror the config service but use tmpDir
 function configExists(): boolean {

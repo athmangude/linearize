@@ -1,4 +1,4 @@
-# Linearize
+# Linearizer
 
 A command-line tool that reads a structured JSON file of scenarios and user stories and creates a complete ticket hierarchy in [Linear](https://linear.app) — automatically.
 
@@ -11,9 +11,9 @@ Product Managers spend significant time manually translating structured requirem
 - **Lost hierarchy** — the parent-child relationships from the PRD don't always survive manual entry
 - **Human error** — missed stories, duplicated entries, or incorrect nesting
 
-## What Linearize Does
+## What Linearizer Does
 
-Linearize takes a single JSON file containing your scenarios and user stories and creates a **3-level ticket hierarchy** in Linear:
+Linearizer takes a single JSON file containing your scenarios and user stories and creates a **3-level ticket hierarchy** in Linear:
 
 ```
 Parent Ticket (you name it)
@@ -37,7 +37,7 @@ The tool handles:
 
 ## Impact
 
-| Without Linearize | With Linearize |
+| Without Linearizer | With Linearizer |
 |---|---|
 | ~2 minutes per ticket, manually | ~2 seconds per ticket, automated |
 | Formatting varies across tickets | Every story has consistent formatting |
@@ -49,18 +49,13 @@ A PRD with 6 scenarios and 24 user stories that would take 30+ minutes of manual
 ## Installation
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd linearize
+npm install -g linearizer
+```
 
-# Install dependencies
-npm install
+Or run directly with npx:
 
-# Build
-npm run build
-
-# Link globally (optional, for using `linearize` anywhere)
-npm link
+```bash
+npx linearizer init
 ```
 
 ## Prerequisites
@@ -76,7 +71,7 @@ You need two things from Linear:
 ### 1. Configure credentials
 
 ```bash
-linearize init
+linearizer init
 ```
 
 The tool will prompt you for:
@@ -92,12 +87,12 @@ Verifying credentials...
 ✔ Configuration saved.
 ```
 
-Your credentials are stored in `~/.linearize-config.json`. They persist across sessions.
+Your credentials are stored in `~/.linearizer-config.json`. They persist across sessions.
 
 ### 2. Create tickets from a JSON file
 
 ```bash
-linearize run --file ./stories.json
+linearizer run --file ./stories.json
 ```
 
 The tool walks you through the process:
@@ -141,11 +136,11 @@ Summary:
 ### 3. Reset credentials
 
 ```bash
-linearize reset
+linearizer reset
 ```
 
 ```
-? Are you sure you want to delete your Linearize configuration? Yes
+? Are you sure you want to delete your Linearizer configuration? Yes
 ✔ Configuration removed successfully.
 ```
 
@@ -154,14 +149,14 @@ linearize reset
 If you need to switch teams or API keys, reset first, then init again:
 
 ```bash
-linearize reset
-linearize init
+linearizer reset
+linearizer init
 ```
 
 Or simply run `init` again and choose to overwrite:
 
 ```bash
-linearize init
+linearizer init
 ```
 
 ```
@@ -173,7 +168,7 @@ linearize init
 If you try to run before configuring:
 
 ```bash
-linearize run --file ./stories.json
+linearizer run --file ./stories.json
 ```
 
 ```
@@ -181,15 +176,15 @@ linearize run --file ./stories.json
 
 Error Type:  ConfigError
 Description: Configuration is missing or invalid.
-Details:     No configuration found. Please run 'linearize init' first.
+Details:     No configuration found. Please run 'linearizer init' first.
 
-Troubleshooting: Run 'linearize init' to set up your configuration.
+Troubleshooting: Run 'linearizer init' to set up your configuration.
 ```
 
 ### 6. Running with an invalid JSON file
 
 ```bash
-linearize run --file ./bad-data.json
+linearizer run --file ./bad-data.json
 ```
 
 ```
@@ -205,7 +200,7 @@ Troubleshooting: Check that your JSON file matches the required schema. See the 
 ### 7. Missing the `--file` flag
 
 ```bash
-linearize run
+linearizer run
 ```
 
 ```
@@ -238,7 +233,7 @@ The tool expects a JSON file with the following structure:
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "LinearizeData",
+  "title": "LinearizerData",
   "type": "object",
   "properties": {
     "scenarios": {
@@ -359,10 +354,10 @@ Troubleshooting: [Suggested next step]
 
 | Error Type | Cause | Suggested Fix |
 |---|---|---|
-| `AuthenticationError` | Invalid or expired API key | Run `linearize reset` then `linearize init` |
+| `AuthenticationError` | Invalid or expired API key | Run `linearizer reset` then `linearizer init` |
 | `ValidationError` | JSON file doesn't match the schema | Check file against the schema above |
 | `NetworkError` | Connection failure or API issue | Check internet connection, try again |
-| `ConfigError` | No config file found | Run `linearize init` |
+| `ConfigError` | No config file found | Run `linearizer init` |
 
 Rate limiting (HTTP 429) is handled automatically with exponential backoff and up to 3 retries.
 

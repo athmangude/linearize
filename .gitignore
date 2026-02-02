@@ -1,6 +1,6 @@
 node_modules/
 dist/
-.linearize-config.json
+.linearizer-config.json
 *.js.map
 *.d.ts
 !jest.config.js

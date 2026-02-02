@@ -11,7 +11,7 @@ import { ConfigError, ValidationError, formatError } from '../utils/errors';
 export async function runCommand(filePath: string): Promise<void> {
   try {
     if (!configExists()) {
-      throw new ConfigError("No configuration found. Please run 'linearize init' first.");
+      throw new ConfigError("No configuration found. Please run 'linearizer init' first.");
     }
 
     const config = loadConfig()!;

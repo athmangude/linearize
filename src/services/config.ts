@@ -3,7 +3,7 @@ import path from 'path';
 import os from 'os';
 import { Config } from '../types';
 
-const CONFIG_PATH = path.join(os.homedir(), '.linearize-config.json');
+const CONFIG_PATH = path.join(os.homedir(), '.linearizer-config.json');
 
 export function getConfigPath(): string {
   return CONFIG_PATH;

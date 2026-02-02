@@ -12,7 +12,7 @@ export async function resetCommand(): Promise<void> {
     {
       type: 'confirm',
       name: 'confirm',
-      message: 'Are you sure you want to delete your Linearize configuration?',
+      message: 'Are you sure you want to delete your Linearizer configuration?',
       default: false,
     },
   ]);
