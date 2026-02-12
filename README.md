@@ -62,7 +62,7 @@ npx linearizer init
 
 You need two things from Linear:
 
-1. **API Key** — Go to Settings > Security & Access > Personal API Keys
+1. **API Key** — Click your account menu (top-left) > Settings > Security & Access > Personal API Keys
 2. **Team ID** — Go to Linear > Settings > Teams > select your team. The Team ID is in the URL: `https://linear.app/<workspace>/settings/teams/<team-id>`
 3. **State ID** (optional) — The ID of the default workflow state (e.g., "Backlog" or "Todo") to assign to new tickets
 
